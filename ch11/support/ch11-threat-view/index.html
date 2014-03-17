@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8">
+    <title>Threat View</title>
+ 
+    <link href="css/opentip.css" rel="stylesheet" type="text/css" /> 
+
+    <script src="d3.v3.min.js"></script>
+    <script src="vega.min.js"></script>
+    <script src="d3.geo.projection.min.js"></script>
+    <script src="jquery-1.10.2.min.js"></script>
+    <script src="opentip-native.js"></script>
+ 
+    
+<script type="text/javascript">
+function doParse(port) {
+  if (port=="") return; 
+  parse(port+"-vega.json");
+} 
+
+var graph, svg, tip ;
+
+// parse a spec and create a visualization view
+function parse(spec) {
+
+  vg.parse.spec(spec, function(chart) { 
+
+    graph = chart({el:"#vis"})
+
+    graph.renderer("svg").update()
+
+    graph.on("mouseover", function(event, item) {
+      if (item.shape == "circle" || item.shape == "square") {
+        tip.setContent("<div>INFO: " + item.datum.info + "<br/>CC: " + 
+          item.datum.cc + " <img src=\"images/flags/png/" + 
+          item.datum.cc.toLowerCase() + ".png\"/><br/>DNS: " + 
+          item.datum.dns + "<br/></div>");
+        tip.activate();
+        tip._storeAndLockDimensions();
+        tip.reposition();
+        tip.show();
+      } else {
+        tip.deactivate();
+        tip.hide();
+      }
+    })
+
+    graph.on("mouseout", function(event, item) {
+      tip.hide();
+      tip.deactivate();
+    })
+
+    graph.on("click", function(event, item) { 
+      a = item
+      console.log(item)
+      console.log(item.datum.name); 
+      if ((item.datum.group == 4) || (item.datum.group == 5)) {
+        window.open("http://www.tcpiputils.com/browse/ip-address/" + item.datum.name,"_blank")
+      }
+      graph.update("click", item);
+    });
+  });
+
+}
+
+$(document).ready(function() {
+  Opentip.defaultStyle = "dark"
+  console.log($("#vis"));
+  tip = new Opentip(document.getElementById("vis"));
+  tip.deactivate();
+  console.log("Ready");
+  doParse("22");
+});
+</script>
+</head>
+<body>
+<h2>Threat View</h2>
+Blue (EU), Green (ASPAC) &amp; Orange (NA) nodes belong to Contoso; Red = External; Purple = On AlienVault List<br/>
+Squares are SERVERS; Circles are non-Servers<br/>
+You can hover over all nodes for info and click on external/bad ones for a lookup.<br/><br/>
+<div>Select port: <select name="port" onchange="doParse(this.value)"> 
+<option value="22">ssh</option>
+<option value="23">telnet</option>
+<option value="prt">Printers</option>
+<option value="161">SNMP</option>
+<option value="554">Streaming (554)</option>
+<option value="7070">Streaming (7070)</option>
+<option value="16464">Port 16464</option>
+</select></div>
+<center><div id="vis"></div></center>
+</body>
+</html>

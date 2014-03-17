@@ -1,0 +1,17 @@
+// Listing 8-8
+// Example of an IronPort log file translated to JSON via MongoDB
+{
+    mid : "346564",
+    icid : "1042862",
+    from : "dave@example.com",
+    to : "steve@test.com",
+    messageID : "112067.438985349-em02@steel",
+    subj: "TPS Reports Due",
+    bytes: "864"
+    matchStatus : 1,
+    delivered : 1,
+    av : { engine : "Sophos", verdict: "CLEAN" },
+    dlp : { violation : "none" },
+    start : "Fri Oct 18 11:05:01",
+    finish : "Fri Oct 18 11:05:01"
+}

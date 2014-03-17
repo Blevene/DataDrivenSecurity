@@ -1,0 +1,72 @@
+{
+  "name": "force",
+  "viewport": [ 1000, 1000 ], 
+  "width": 1000,
+  "height": 1000,  
+  "padding": { "top":0, "bottom":0, "left":0, "right":0},
+  "data": [
+    {
+      "name": "edges",
+      "url": "22-data.json",
+      "format": {"type": "json", "property": "links"},
+      "transform": [
+        {"type": "copy", "from": "data", "fields": ["source", "target" ]}
+      ]
+    },
+    {
+      "name": "nodes",
+      "url": "22-data.json",
+      "format": {"type": "json", "property": "nodes"},
+      "transform": [
+        {
+          "type": "force",
+          "links": "edges",
+          "linkDistance": 30,
+          "charge": -100,
+          "iterations": 5000
+        },
+        {
+          "type": "copy", "from":"data","fields":["name", "group", "color", "type", "info", "cc", "dns"]
+        }
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "type": "path",
+      "from": {
+        "data": "edges",
+        "transform": [
+          {"type": "link", "shape": "line"}
+        ]
+      },
+      "properties": {
+        "update": {
+          "path": {"field": "path"},
+          "stroke": {"value": "#ccc"},
+          "strokeWidth": {"value": 0.5}
+        }
+      }
+    },
+    {
+      "type":  "symbol" ,
+      "from": {"data": "nodes"},
+      "properties": {
+        "enter": {
+          "shape" : { "field" : "data.type" },
+          "fillOpacity": {"value": 0.3},
+          "stroke": {"field":"data.color"}
+        },
+        "update": {
+          "x": {"field": "x"},
+          "y": {"field": "y"},
+          "fill": {"field":"data.color"}
+        },
+        "hover": {
+          "fill": {"value": "#f00"}
+        }
+      }
+    }
+  ]
+}
+

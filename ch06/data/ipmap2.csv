@@ -1,0 +1,10 @@
+"label","cat","type","count","sessions"
+"Router","Router","Network",24,21333
+"Switch","Switch","Network",15,73562
+"AIX","AIX","Server",240,46006
+"Linux","Linux","Server",208,42177
+"Win","Windows","Server",263,131930
+"Linux-Dev","Linux Developer","Workstation",80,51745
+"Mac-Laptops","Mac","Workstation",142,321828
+"Windows-Workstations","Windows","Workstation",10765,26351985
+"Win Developers","Windows Developer","Workstation",842,2569779

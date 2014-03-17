@@ -1,0 +1,26 @@
+# Listing 8-7
+# Example of an IronPort log file
+Fri Oct 18 11:05:01 2011 Info: Start MID 346564 ICID 1042862
+Fri Oct 18 11:05:01 2011 Info: MID 346564 ICID 1042862 From:
+ <dave@example.com>
+Fri Oct 18 11:05:01 2011 Info: MID 346564 ICID 1042862 RID 0 To:
+ <steve@test.com>
+Fri Oct 18 11:05:01 2011 Info: MID 346564 Message-ID 
+'<112067.438985349-em02@steel>'
+Fri Oct 18 11:05:01 2011 Info: MID 346564 Subject ‘TPS Reports Due'
+Fri Oct 18 11:05:02 2011 Info: MID 346564 ready 864 bytes from
+ <dave@example.com>
+Fri Oct 18 11:05:02 2011 Info: MID 346564 matched all recipients for
+ per-recipient policy local domains in the outbound table
+Fri Oct 18 11:05:03 2011 Info: MID 346564 interim AV verdict using
+ Sophos CLEAN
+Fri Oct 18 11:05:03 2011 Info: MID 346564 antivirus negative
+Fri Oct 18 11:05:03 2011 Info: MID 346564 DLP no violation
+Fri Oct 18 11:05:03 2011 Info: MID 346564 queued for delivery
+Fri Oct 18 11:05:03 2011 Info: Delivery start DCID 178987 MID 346564
+ to RID [0]
+Fri Oct 18 11:05:04 2011 Info: Message done DCID 178987 MID 346564
+ to RID [0]
+Fri Oct 18 11:05:04 2011 Info: MID 346564 RID [0] Response 'ok:
+  Message 10569973 accepted'
+Fri Oct 18 11:05:04 2011 Info: Message finished MID 346564 done
